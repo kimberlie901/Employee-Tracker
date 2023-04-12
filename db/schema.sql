@@ -2,7 +2,7 @@
 
 CREATE TABLE departments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL /* to hold department name */
+    dapartment_name VARCHAR(30) NOT NULL /* to hold department name */
 )
 
 CREATE TABLE roles (
