@@ -25,6 +25,7 @@ const inquirer = require("inquirer");
 const db = require("./db");
 const fs = require("fs");
 const cTable = require("console.table");
+const { title } = require("process");
 
 //Set up Express app
 const app = express();
@@ -60,7 +61,7 @@ function startPrompt() {
                 viewAllEmployees();
                 break;
             case "Add A Department":
-                addDepartment();
+                addADepartment();
                 break;
             case "Add A Role":
                 addRole();
@@ -78,7 +79,7 @@ function startPrompt() {
 
 // View all departments 
 function viewAllDepartments() {
-    db.allDepartments()
+    db.viewDepartments()
         .then(([rows]) => {
             let departments = rows
             console.table(departments);
@@ -86,11 +87,92 @@ function viewAllDepartments() {
         .then(() => startPrompt());
 }
 // View all roles
+function viewAllRoles() {
+    db.viewRoles()
+        .then(([rows]) => {
+            let roles = rows
+            console.table(roles);
+        })
+        .then(() => startPrompt());
+}
+
 // View all employees
+function viewAllEmployees() {
+    db.viewEmployees()
+        .then(([rows]) => {
+            let employees = rows
+            console.table(employees);
+        })
+        .then(() => startPrompt());
+}
+
 // Add a department
+function addADepartment() {
+    inquirer.prompt([
+        {
+            name: "name",
+            message: "What is the name of the department?",
+        }
+    
+    ])
+}
+
 // Add a role
+function addRole(){
+    inquirer.prompt([
+        {
+            name: "title",
+            message: "What is the name of the role?",
+        },
+        {
+            name: "salary",
+            message: "What is the desired salary of the role?",
+        },
+        {
+            type: "list",
+            name: "Department",
+            message: "What department does the role belong to?",
+            choices: [departmentChoices]
+        }
+    ])
+}
+
 // Add an employee
+function addEmployee(){
+    inquirer.prompt([
+        {
+            name: "First Name",
+            message: "What is the employee's first name?",
+        },
+        {
+            name: "Last Name",
+            message: "What is the employee's last name?",
+        },
+        {
+            type: "list",
+            name: "Role",
+            message: "What role does the employee belong to?",
+            choices: [roleChoices]
+        }
+    ])
+}
 // Update an employee role
+function updateEmployeeRole(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "Employee ID",
+            message: "Which employee's role do you want to update?",
+            choices: [employeeChoices]
+        },
+        {
+            type: "list",
+            name: "Role ID",
+            message: "What new role do you want to assign to this employee?",
+            choices: [roleChoices]
+        }
+    ])
+}
 
 //Call to start app
 init();
