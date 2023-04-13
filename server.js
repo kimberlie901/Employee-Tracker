@@ -20,20 +20,20 @@
 
 //Dependencies
 const mysql = require("mysql2/promise");
-const express = require("express");
+// const express = require("express");
 const inquirer = require("inquirer");
-const db = require("./db");
+const db = require("./db/connection");
 const fs = require("fs");
 const cTable = require("console.table");
 const { title } = require("process");
 
 //Set up Express app
-const app = express();
-const PORT = process.env.PORT || 3003;
+// const app = express();
+const PORT = process.env.PORT || 3306;
 
 //Set-up Middleware
-app.use(express.urlencoded({extended:false}));
-app.use(express.json());
+// app.use(express.urlencoded({extended:false}));
+// app.use(express.json());
 
 //Initial function at start
 function init(){
@@ -48,9 +48,8 @@ function startPrompt() {
         message: "What would you like to do?",
         choices: ["View All Departments", "View All Roles", "View All Employees", "Add A Department", "Add A Role", "Add An Employee", "Update An Employee Role"]
 
-    }).then( answer => {
-        let answer = answer.menu; 
-        switch (answer.menu) {
+    }).then( choices => { 
+        switch (choices) {
             case "View All Departments":
                 viewAllDepartments();
                 break;
