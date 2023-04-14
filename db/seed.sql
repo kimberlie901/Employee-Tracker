@@ -16,8 +16,8 @@ VALUES
     ("Cyber Security Engineer", 127000, 6),
     ("Financial Controller", 127000, 7);
 
-Select * from roles;
+-- Select * from roles;
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES 
- ("Naruto", "Uzumaki", 9, NULL), ("Itachi", "Uchiha", 5, NULL), ("Neji", "Hyuuga", 7, NULL), ("Steven", "Yeun", 8, NULL), ("Spirited", "Away", 3, 7), ("Mia", "Thermopolis", 8, NULL), ("Hinata", "Hyuuga", 1, NULL), ("John", "Tucker", 8, 2), ("Harry", "Potter", 2, NULL), ("Ariana", "Grande", 4, NULL), ("Drake", "Graham", 6, NULL), ("Beyonce", "Knowles", 7, 5), ("Nicki", "Minaj", 9, 7), ("Snoh", "Aalegra", 4, 7);
+ ("Naruto", "Uzumaki", 9, NULL), ("Itachi", "Uchiha", 5, NULL), ("Neji", "Hyuuga", 7, NULL), ("Steven", "Yeun", 8, NULL), ("Spirited", "Away", 3, 7), ("Mia", "Thermopolis", 8, NULL), ("Hinata", "Hyuuga", 1, NULL), ("John", "Tucker", 8, 2), ("Harry", "Potter", 2, NULL), ("Ariana", "Grande", 4, NULL), ("Drake", "Graham", 6, NULL), ("Beyonce", "Knowles", 7, 5), ("Nicki", "Minaj", 9, 1), ("Snoh", "Aalegra", 4, 7);

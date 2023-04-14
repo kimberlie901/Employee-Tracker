@@ -20,7 +20,11 @@ class employeeTrackerDB {
     viewEmployees() {
         return this.connection.promise().query (
             "SELECT * FROM employees"
-        )
+        );
+    }
+    // Add a department
+    addADepartment(deparment) {
+        return this.connection.promise().query ("INSERT INTO department", deparment);
     }
 }
 
@@ -28,10 +32,11 @@ class employeeTrackerDB {
 
 
 
-// Add a department
 
 // Add a role
 
 // Add an employee 
 
 // Update an employee role 
+
+module.exports = new employeeTrackerDB(connection);
