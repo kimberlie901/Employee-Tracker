@@ -5,7 +5,7 @@
  * WHEN I choose to view all departments
  * THEN I am presented with a formatted table showing department names and department ids
  * WHEN I choose to view all roles
- * THEN I am presented with the job title, role, id, the deparment that role belongs to, and the salary, for that role
+ * THEN I am presented with the job title, role id, the deparment that role belongs to, and the salary, for that role
  * WHEN I choose to view all employees
  * THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to 
  * WHEN I choose to add a department
@@ -20,23 +20,18 @@
 
 //Dependencies
 const mysql = require("mysql2/promise");
-// const express = require("express");
 const inquirer = require("inquirer");
 const db = require("./db/connection");
 const fs = require("fs");
 const cTable = require("console.table");
 const { title } = require("process");
+const queries = require("./db/queries");
 
 //Set up Express app
-// const app = express();
-const PORT = process.env.PORT || 3306;
-
-//Set-up Middleware
-// app.use(express.urlencoded({extended:false}));
-// app.use(express.json());
+const PORT = process.env.PORT || 3001;
 
 //Initial function at start
-function init(){
+function init() {
     startPrompt();
 }
 
@@ -47,8 +42,7 @@ function startPrompt() {
         name: "menu",
         message: "What would you like to do?",
         choices: ["View All Departments", "View All Roles", "View All Employees", "Add A Department", "Add A Role", "Add An Employee", "Update An Employee Role"]
-
-    }).then( choices => { 
+    }).then(choices => {
         switch (choices) {
             case "View All Departments":
                 viewAllDepartments();
@@ -70,7 +64,7 @@ function startPrompt() {
                 break;
             case "Update An Employee Role":
                 updateEmployeeRole();
-                break;    
+                break;
         }
 
     })
@@ -78,32 +72,33 @@ function startPrompt() {
 
 // View all departments 
 function viewAllDepartments() {
-    db.viewDepartments()
+    queries.viewDepartments()
         .then(([rows]) => {
             let departments = rows
             console.table(departments);
         })
         .then(() => startPrompt());
-}
+};
+
 // View all roles
 function viewAllRoles() {
-    db.viewRoles()
+    queries.viewRoles()
         .then(([rows]) => {
             let roles = rows
             console.table(roles);
         })
         .then(() => startPrompt());
-}
+};
 
 // View all employees
 function viewAllEmployees() {
-    db.viewEmployees()
+    queries.viewEmployees()
         .then(([rows]) => {
             let employees = rows
             console.table(employees);
         })
         .then(() => startPrompt());
-}
+};
 
 // Add a department
 function addADepartment() {
@@ -112,32 +107,46 @@ function addADepartment() {
             name: "name",
             message: "What is the name of the department?",
         }
-    
     ])
-}
+};
 
 // Add a role
-function addRole(){
-    inquirer.prompt([
-        {
-            name: "title",
-            message: "What is the name of the role?",
-        },
-        {
-            name: "salary",
-            message: "What is the desired salary of the role?",
-        },
-        {
-            type: "list",
-            name: "Department",
-            message: "What department does the role belong to?",
-            choices: [departmentChoices]
+function addRole() {
+    queries.viewAllDepartments()
+        .then(([rows]) => {
+            let departments = rows;
+            const departmentChoices = departments.map(({ id, name }) => ({
+                name: name,
+                value: id,
+            }))
+            inquirer.prompt([
+                {
+                    name: "title",
+                    message: "What is the name of the role?",
+                },
+                {
+                    name: "salary",
+                    message: "What is the desired salary of the role?",
+                },
+                {
+                    type: "list",
+                    name: "Department",
+                    message: "What department does the role belong to?",
+                    choices: [departmentChoices]
+                }
+            ])
+                .then(roles => {
+                    queries.createRole(roles)
+                        .then(() => console.log(`Added ${role.title} to database`))
+                        .then(() => startPrompt())
+                })
         }
-    ])
-}
+        )
+};
+
 
 // Add an employee
-function addEmployee(){
+function addEmployee() {
     inquirer.prompt([
         {
             name: "First Name",
@@ -154,9 +163,11 @@ function addEmployee(){
             choices: [roleChoices]
         }
     ])
+    .then()
 }
+
 // Update an employee role
-function updateEmployeeRole(){
+function updateEmployeeRole() {
     inquirer.prompt([
         {
             type: "list",
