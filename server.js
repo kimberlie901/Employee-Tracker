@@ -191,21 +191,36 @@ function addEmployee() {
 
 // Update an employee role
 function updateEmployeeRole() {
+    queries.viewEmployees()
+    .then(([rows]) => {
+        let departments = rows;
+        const departmentChoices = departments.map(({ id, title}) => 
+        ((
+            name: title,
+            value: id,
+        )))
+        console.log(departmentChoices)
     inquirer.prompt([
         {
             type: "list",
-            name: "employees_id",
+            name: "employee_id",
             message: "Which employee's role do you want to update?",
-            choices: [employeeChoices]
+            choices: employeeChoices
         },
         {
             type: "list",
             name: "roles_id",
             message: "What new role do you want to assign to this employee?",
-            choices: [roleChoices]
+            choices: roleChoices
         }
     ])
-}
+    .then(employees => {
+        queries.updateEmployeeRole(employees)
+        .then(() => console.log("Employee role updated in database"))
+        .then(() => startPrompt());
+    })
+})
+};
 
 //Call to start app
 init();
