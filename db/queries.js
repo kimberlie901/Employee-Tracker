@@ -7,13 +7,13 @@ class employeeTrackerDB {
     // View all departments
     viewDepartments() {
         return this.connection.promise().query (
-            "SELECT department.department_name, department_id from department"
+            "SELECT * from departments"
         );
     }
     // View all roles
     viewRoles() {
         return this.connection.promise().query (
-            "SELECT role.title, role.id, department_name, role.salary FROM role LEFT JOIN department on role.department_id = department_id"
+            "SELECT roles.title, roles.id, departments.departments_name AS departments, roles.salary from roles LEFT JOIN departments on roles.departments_id = departments.id"
         );
     }
     // View all employees
@@ -23,19 +23,17 @@ class employeeTrackerDB {
         );
     }
     // Add a department
-    addADepartment(deparment) {
-        return this.connection.promise().query ("INSERT INTO department", deparment);
+    addADepartment(departments) {
+        return this.connection.promise().query ("INSERT INTO departments SET ?", departments);
     }
+    // Add a role
+    createRoles(roles) {
+        return this.connection.promise().query("INSERT INTO roles SET?", roles);
+    }
+    // Add an employee 
 }
 
 
-
-
-
-
-// Add a role
-
-// Add an employee 
 
 // Update an employee role 
 

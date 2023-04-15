@@ -104,21 +104,30 @@ function viewAllEmployees() {
 function addADepartment() {
     inquirer.prompt([
         {
-            name: "name",
+            name: "departments_name",
             message: "What is the name of the department?",
         }
     ])
+    // queries.addADepartment()
+    .then((departments_name) => {
+        console.log(departments_name)
+        queries.addADepartment(departments_name)
+        .then(() => console.log("added a new department"))
+        .then(() => startPrompt());
+    })
 };
 
 // Add a role
 function addRole() {
-    queries.viewAllDepartments()
+    queries.viewDepartments()
         .then(([rows]) => {
+            // console.log(rows)
             let departments = rows;
-            const departmentChoices = departments.map(({ id, name }) => ({
-                name: name,
+            const departmentChoices = departments.map(({ id, departments_name }) => ({
+                name: departments_name,
                 value: id,
             }))
+            console.log(departmentChoices)
             inquirer.prompt([
                 {
                     name: "title",
@@ -130,14 +139,14 @@ function addRole() {
                 },
                 {
                     type: "list",
-                    name: "Department",
+                    name: "departments_id",
                     message: "What department does the role belong to?",
-                    choices: [departmentChoices]
+                    choices: departmentChoices
                 }
             ])
                 .then(roles => {
-                    queries.createRole(roles)
-                        .then(() => console.log(`Added ${role.title} to database`))
+                    queries.createRoles(roles)
+                        .then(() => console.log(`Added ${roles.title} to database`))
                         .then(() => startPrompt())
                 })
         }
@@ -147,24 +156,33 @@ function addRole() {
 
 // Add an employee
 function addEmployee() {
+    queries.viewRoles()
+        .then(([rows]) => {
+            let departments = rows;
+            const departmentChoices = departments.map(({ id, title }) => ({
+                name: title,
+                value: id, 
+            }))
+            console.log(departmentChoices)
     inquirer.prompt([
         {
-            name: "First Name",
+            name: "first_name",
             message: "What is the employee's first name?",
         },
         {
-            name: "Last Name",
+            name: "last_name",
             message: "What is the employee's last name?",
         },
         {
             type: "list",
             name: "Role",
             message: "What role does the employee belong to?",
-            choices: [roleChoices]
+            choices: departmentChoices
         }
     ])
-    .then()
-}
+    .then()})
+};
+
 
 // Update an employee role
 function updateEmployeeRole() {
