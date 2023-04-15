@@ -43,7 +43,7 @@ function startPrompt() {
         message: "What would you like to do?",
         choices: ["View All Departments", "View All Roles", "View All Employees", "Add A Department", "Add A Role", "Add An Employee", "Update An Employee Role"]
     }).then(choices => {
-        switch (choices) {
+        switch (choices.menu) {
             case "View All Departments":
                 viewAllDepartments();
                 break;
