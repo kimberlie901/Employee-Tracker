@@ -191,15 +191,24 @@ function addEmployee() {
 
 // Update an employee role
 function updateEmployeeRole() {
+    let employeeChoices = [];
+    let roleChoices = viewAllRoles;
     queries.viewEmployees()
     .then(([rows]) => {
         let departments = rows;
         const departmentChoices = departments.map(({ id, title}) => 
-        ((
+        ({
             name: title,
             value: id,
-        )))
-        console.log(departmentChoices)
+    }))
+        console.log(departmentChoices);
+        employeeChoices = departments.map(({ id, first_name, last_name}) =>
+        ({
+            name: `${first_name} ${last_name}`,
+            value: id,
+        }));
+    })
+    .then(() => {
     inquirer.prompt([
         {
             type: "list",
@@ -218,8 +227,8 @@ function updateEmployeeRole() {
         queries.updateEmployeeRole(employees)
         .then(() => console.log("Employee role updated in database"))
         .then(() => startPrompt());
-    })
-})
+    });
+});
 };
 
 //Call to start app
