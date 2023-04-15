@@ -39,3 +39,4 @@ CREATE TABLE
         roles_id INT,
         manager_id INT NULL
     );
+

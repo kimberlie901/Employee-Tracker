@@ -175,17 +175,16 @@ function addEmployee() {
         },
         {
             type: "list",
-            name: "Role",
+            name: "roles_id",
             message: "What role does the employee belong to?",
             choices: departmentChoices
         }
     ])
-    .then(employees); {
-        queries
-        .creatEmployees(employees)
+    .then(employees => {
+        queries.addEmployee(employees)
         .then(() => console.log("Employee added to database"))
         .then(() => startPrompt());
-    }
+    })
 })
 };
 
@@ -195,13 +194,13 @@ function updateEmployeeRole() {
     inquirer.prompt([
         {
             type: "list",
-            name: "employee_id",
+            name: "employees_id",
             message: "Which employee's role do you want to update?",
             choices: [employeeChoices]
         },
         {
             type: "list",
-            name: "role_id",
+            name: "roles_id",
             message: "What new role do you want to assign to this employee?",
             choices: [roleChoices]
         }
