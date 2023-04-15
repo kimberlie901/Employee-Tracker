@@ -180,7 +180,13 @@ function addEmployee() {
             choices: departmentChoices
         }
     ])
-    .then()})
+    .then(employees); {
+        queries
+        .creatEmployees(employees)
+        .then(() => console.log("Employee added to database"))
+        .then(() => startPrompt());
+    }
+})
 };
 
 
@@ -189,13 +195,13 @@ function updateEmployeeRole() {
     inquirer.prompt([
         {
             type: "list",
-            name: "Employee ID",
+            name: "employee_id",
             message: "Which employee's role do you want to update?",
             choices: [employeeChoices]
         },
         {
             type: "list",
-            name: "Role ID",
+            name: "role_id",
             message: "What new role do you want to assign to this employee?",
             choices: [roleChoices]
         }

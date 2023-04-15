@@ -31,10 +31,16 @@ class employeeTrackerDB {
         return this.connection.promise().query("INSERT INTO roles SET?", roles);
     }
     // Add an employee 
+    addEmployee(employees) {
+        return this.connection.promise().query("INSERT INTO employees SET ?", employees);
+    }
+    // Update an employee role 
+    updateEmployeeRole(employee_id, role_id) {
+        return this.connection.promise().query("UPDATE employee SET role_id ? WHERE id = ?", employee_id, role_id);
+    }
 }
 
 
 
-// Update an employee role 
 
 module.exports = new employeeTrackerDB(connection);
