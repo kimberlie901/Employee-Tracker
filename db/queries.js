@@ -7,13 +7,13 @@ class employeeTrackerDB {
     // View all departments
     viewDepartments() {
         return this.connection.promise().query (
-            "SELECT department.name, department.id from department"
+            "SELECT department.department_name, department_id from department"
         );
     }
     // View all roles
     viewRoles() {
         return this.connection.promise().query (
-            "SELECT role.title, role.id, department.name, role.salary FROM role LEFT JOIN department on role.department_id = department.id"
+            "SELECT role.title, role.id, department_name, role.salary FROM role LEFT JOIN department on role.department_id = department_id"
         );
     }
     // View all employees

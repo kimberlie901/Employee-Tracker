@@ -13,7 +13,7 @@ USE employeeTracker;
 -- Creats the departments table inside the employeeTracker database
 
 CREATE TABLE
-    departments (
+    department (
         id INT AUTO_INCREMENT PRIMARY KEY,
         department_name VARCHAR(30) NOT NULL
     );
@@ -26,7 +26,7 @@ CREATE TABLE
         title VARCHAR(30) NOT NULL,
         salary DECIMAL NOT NULL,
         department_id INT NOT NULL,
-        CONSTRAINT departmentKey FOREIGN KEY (department_id) REFERENCES departments(id)
+        CONSTRAINT departmentKey FOREIGN KEY (department_id) REFERENCES department(id)
     );
 
 -- Creats the employees table inside the employeeTracker database
