@@ -36,7 +36,7 @@ class employeeTrackerDB {
     }
     // Update an employee role 
     updateEmployeeRole(employee_id, roles_id) {
-        return this.connection.promise().query("UPDATE employees SET roles_id ? WHERE id = ?", employee_id, roles_id);
+        return this.connection.promise().query("UPDATE employees SET roles_id = ? WHERE id = ?", [employee_id, roles_id]);
     }
 }
 
