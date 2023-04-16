@@ -121,7 +121,7 @@ function addADepartment() {
 function addRole() {
     queries.viewDepartments()
         .then(([rows]) => {
-            // console.log(rows)
+            console.log(rows)
             let departments = rows;
             const departmentChoices = departments.map(({ id, departments_name }) => ({
                 name: departments_name,
