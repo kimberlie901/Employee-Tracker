@@ -108,13 +108,12 @@ function addADepartment() {
             message: "What is the name of the department?",
         }
     ])
-    // queries.addADepartment()
-    .then((departments_name) => {
-        console.log(departments_name)
-        queries.addADepartment(departments_name)
-        .then(() => console.log("added a new department"))
-        .then(() => startPrompt());
-    })
+        .then((departments_name) => {
+            console.log(departments_name)
+            queries.addADepartment(departments_name)
+                .then(() => console.log("added a new department"))
+                .then(() => startPrompt());
+        })
 };
 
 // Add a role
@@ -153,7 +152,6 @@ function addRole() {
         )
 };
 
-
 // Add an employee
 function addEmployee() {
     queries.viewRoles()
@@ -161,74 +159,74 @@ function addEmployee() {
             let departments = rows;
             const departmentChoices = departments.map(({ id, title }) => ({
                 name: title,
-                value: id, 
+                value: id,
             }))
             console.log(departmentChoices)
-    inquirer.prompt([
-        {
-            name: "first_name",
-            message: "What is the employee's first name?",
-        },
-        {
-            name: "last_name",
-            message: "What is the employee's last name?",
-        },
-        {
-            type: "list",
-            name: "roles_id",
-            message: "What role does the employee belong to?",
-            choices: departmentChoices
-        }
-    ])
-    .then(employees => {
-        queries.addEmployee(employees)
-        .then(() => console.log("Employee added to database"))
-        .then(() => startPrompt());
-    })
-})
+            inquirer.prompt([
+                {
+                    name: "first_name",
+                    message: "What is the employee's first name?",
+                },
+                {
+                    name: "last_name",
+                    message: "What is the employee's last name?",
+                },
+                {
+                    type: "list",
+                    name: "roles_id",
+                    message: "What role does the employee belong to?",
+                    choices: departmentChoices
+                }
+            ])
+                .then(employees => {
+                    queries.addEmployee(employees)
+                        .then(() => console.log("Employee added to database"))
+                        .then(() => startPrompt());
+                })
+        })
 };
 
 
 // Update an employee role
 function updateEmployeeRole() {
-    let employeeChoices = [];
-    let roleChoices = viewAllRoles;
     queries.viewEmployees()
-    .then(([rows]) => {
-        let departments = rows;
-        const departmentChoices = departments.map(({ id, title}) => 
-        ({
-            name: title,
-            value: id,
-    }))
-        console.log(departmentChoices);
-        employeeChoices = departments.map(({ id, first_name, last_name}) =>
-        ({
-            name: `${first_name} ${last_name}`,
-            value: id,
-        }));
-    })
-    .then(() => {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "employee_id",
-            message: "Which employee's role do you want to update?",
-            choices: employeeChoices
-        },
-        {
-            type: "list",
-            name: "roles_id",
-            message: "What new role do you want to assign to this employee?",
-            choices: roleChoices
-        }
-    ])
-    .then(employees => {
-        queries.updateEmployeeRole(employees)
-        .then(() => console.log("Employee role updated in database"))
-        .then(() => startPrompt());
-    });
-});
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}`,
+                value: id,
+            }));
+            inquirer.prompt([
+                {
+                    type: "list",
+                    name: "employee_id",
+                    message: "Which employee's role do you want to update?",
+                    choices: employeeChoices
+                }
+            ])
+                .then(rows => {
+                    let employee_id = rows.employee_id;
+                    queries.viewRoles()
+                        .then(([rows]) => {
+                            let roles = rows;
+                            const roleChoices = roles.map(({ id, title }) => ({
+                                name: title,
+                                value: id,
+                            }));
+                            inquirer.prompt([
+                                {
+                                    type: "list",
+                                    name: "roles_id",
+                                    message: "What new role do you want to assign to this employee?",
+                                    choices: roleChoices
+                                }
+                            ])
+                                .then(rows => queries.updateEmployeeRole(employee_id, rows.employee_id))
+                                .then(() => console.log("Employee role updated in database"))
+                                .then(() => startPrompt());
+                        });
+                });
+        })
 };
 
 //Call to start app
