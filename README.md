@@ -48,7 +48,8 @@ SO THAT I can organize and plan my business
 - console.table.package
 
 ## Demo
-walk through video 
+
+[Employee Tracker Demo Video](https://drive.google.com/file/d/1B821X4w4eRJgM2RV11XFziHQv014u5JI/view?usp=sharing)
 
 ## Images
 
