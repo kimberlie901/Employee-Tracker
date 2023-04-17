@@ -27,13 +27,13 @@ SO THAT I can organize and plan my business
 
 ## Installation
 
-- Visual Studio Code
-- Download or Cloan repository
-- Node.js
-- npm install to install the required npm packages 
-- inquirer: to interact with the user via the command line
-- mySQL2 to connect to your mySQL database and perform queries
-- console.table to print mySQL rows to the console
+1. Visual Studio Code
+2. Download or Cloan repository
+3. Node.js
+4. npm install to install the required npm packages 
+5. inquirer: to interact with the user via the command line
+6. mySQL2 to connect to your mySQL database and perform queries
+7. console.table to print mySQL rows to the console
 
 
 ## Technologies
