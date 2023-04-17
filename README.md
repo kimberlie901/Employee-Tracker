@@ -22,8 +22,8 @@ SO THAT I can organize and plan my business
 
 ## Websites 
 
-- [Deployed Application](https://kimberlie901.github.io/my_Employees/)
-- [Github](https://github.com/kimberlie901/my_Employees)
+- [Deployed Application](https://kimberlie901.github.io/Employee-Tracker/)
+- [Github](https://github.com/kimberlie901/Employee-Tracker)
 
 ## Installation
 
