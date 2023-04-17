@@ -59,8 +59,10 @@ walk through video
 ![Employee-Tracker-Demo](assets/view%20all%20employees.png)
 ![Employee-Tracker-Demo](assets/all%20employees.png)
 ![Employee-Tracker-Demo](assets/add%20a%20department.png)
-![Employee-Tracker-Demo](assets/departments.png)
 ![Employee-Tracker-Demo](assets/department%20added.png)
+![Employee-Tracker-Demo](assets/add%20a%20role.png)
+![Employee-Tracker-Demo](assets/ux%20designer%20added.png)
+![Employee-Tracker-Demo](assets/ux%20designer%20in%20role.png)
 
 
 
