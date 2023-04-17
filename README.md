@@ -63,12 +63,8 @@ walk through video
 ![Employee-Tracker-Demo](assets/add%20a%20role.png)
 ![Employee-Tracker-Demo](assets/ux%20designer%20added.png)
 ![Employee-Tracker-Demo](assets/ux%20designer%20in%20role.png)
-
-
-
-
-
-
+![Employee-Tracker-Demo](assets/add%20employee.png)
+![Employee-Tracker-Demo](assets/employee%20added.png)
 
 ## License 
 
