@@ -6,25 +6,25 @@ class employeeTrackerDB {
     }
     // View all departments
     viewDepartments() {
-        return this.connection.promise().query (
+        return this.connection.promise().query(
             "SELECT * from departments"
         );
     }
     // View all roles
     viewRoles() {
-        return this.connection.promise().query (
+        return this.connection.promise().query(
             "SELECT roles.title, roles.id, departments.departments_name AS departments, roles.salary from roles LEFT JOIN departments on roles.departments_id = departments.id"
         );
     }
     // View all employees
     viewEmployees() {
-        return this.connection.promise().query (
+        return this.connection.promise().query(
             "SELECT * FROM employees"
         );
     }
     // Add a department
     addADepartment(departments) {
-        return this.connection.promise().query ("INSERT INTO departments SET ?", departments);
+        return this.connection.promise().query("INSERT INTO departments SET ?", departments);
     }
     // Add a role
     createRoles(roles) {
@@ -39,8 +39,5 @@ class employeeTrackerDB {
         return this.connection.promise().query("UPDATE employees SET roles_id = ? WHERE id = ?", [employee_id, roles_id]);
     }
 }
-
-
-
 
 module.exports = new employeeTrackerDB(connection);

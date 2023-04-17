@@ -22,9 +22,9 @@
 const mysql = require("mysql2/promise");
 const inquirer = require("inquirer");
 const db = require("./db/connection");
-const fs = require("fs");
+// const fs = require("fs");
 const cTable = require("console.table");
-const { title } = require("process");
+// const { title } = require("process");
 const queries = require("./db/queries");
 
 //Set up Express app
