@@ -22,8 +22,8 @@ SO THAT I can organize and plan my business
 
 ## Websites 
 
-- Deployed Application
-- Github
+- [Deployed Application]()
+- [Github](https://github.com/kimberlie901/my_Employees)
 
 ## Installation
 
@@ -49,7 +49,13 @@ SO THAT I can organize and plan my business
 
 ## Demo
 walk through video 
-screenshots
+
+## Images
+
+![Employee-Tracker-Demo](assets/view%20all%20departments.png)
+![Employee-Tracker-Demo](assets/departments.png)
+![Employee-Tracker-Demo](assets/view%20all%20roles.png)
+![Employee-Tracker-Demo](assets/roles.png)
 
 ## License 
 
