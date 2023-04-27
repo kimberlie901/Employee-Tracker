@@ -4,13 +4,24 @@
 
 A Content Management System (CMS) application that manages a company's employee database. This command-line application will be using Node.js, Inquirer, and MySQL to help keep a company organized. 
 
-## User Story
+## Table of Contents
+- [User Story](#user-story)
+- [Usage](#usage)
+- [Installation](#installation)
+- [Technologies](#technologies)
+- [Demo](#demo)
+- [Application Screenshots](#application-screenshots)
+- [Websites](#websites)
+- [Author](#author)
+- [License](#license)
+
+### User Story
 
 AS A business owner
 I WANT to be able to view and manage the departments, roles, and employees in my company
 SO THAT I can organize and plan my business
 
-## Usage
+### Usage
 
 - User will be able to view all departments
 - User will be bale to view all roles
@@ -20,12 +31,7 @@ SO THAT I can organize and plan my business
 - User will be able to add an employee 
 - User will be able to update an employee
 
-## Websites 
-
-- [Deployed Application](https://kimberlie901.github.io/Employee-Tracker/)
-- [Github](https://github.com/kimberlie901/Employee-Tracker)
-
-## Installation
+### Installation
 
 1. Visual Studio Code
 2. Download or Cloan repository
@@ -35,8 +41,7 @@ SO THAT I can organize and plan my business
 6. mySQL2 to connect to your mySQL database and perform queries
 7. console.table to print mySQL rows to the console
 
-
-## Technologies
+### Technologies
 
 - Visual Studio Code
 - Javascripts
@@ -47,11 +52,11 @@ SO THAT I can organize and plan my business
 - mySQL2 
 - console.table.package
 
-## Demo
+### Demo
 
 [Employee Tracker Demo Video](https://drive.google.com/file/d/1B821X4w4eRJgM2RV11XFziHQv014u5JI/view?usp=sharing)
 
-## Images
+### Application Screenshots
 
 ![Employee-Tracker-Demo](assets/view%20all%20departments.png)
 ![Employee-Tracker-Demo](assets/departments.png)
@@ -67,6 +72,19 @@ SO THAT I can organize and plan my business
 ![Employee-Tracker-Demo](assets/add%20employee.png)
 ![Employee-Tracker-Demo](assets/employee%20added.png)
 
-## License 
+### Websites 
+
+- [Deployed Application](https://kimberlie901.github.io/Employee-Tracker/)
+- [Github](https://github.com/kimberlie901/Employee-Tracker)
+
+### Author
+
+This application was created by Kimberlie Guillaume
+
+- [Github](https://github.com/kimberlie901)
+- [Portfolio](https://kimberlie901.github.io/Professional_Portfolio/) 
+- [LinkedIn](https://www.linkedin.com/in/kjguill1024/)
+
+### License 
 
 Please refer to the LICENSE in the repo. Copyright (c) Kimberlie Guillaume. All rights reserved. 
